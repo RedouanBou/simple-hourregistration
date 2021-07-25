@@ -1,0 +1,71 @@
+import React from 'react';
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+
+const Home = () => {
+    const [data, setData] = useState();
+
+    const getData = async () => {
+        try {
+            const res = await fetch("https://sheet.best/api/sheets/9dd5c7ac-a6b0-4df5-9053-67f37650687d");
+
+            const data = await res.json();
+            setData(Object.keys(data).map((key) => data[key]));
+        } catch(error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        getData();
+    }, []);
+
+    const handleDelete = async (rowIndex) => {
+        try {
+            const res = await fetch(`https://sheet.best/api/sheets/9dd5c7ac-a6b0-4df5-9053-67f37650687d/${rowIndex}`, {method: "DELETE"});
+
+            if (res.ok) {
+                const updatedData = data.filter((_, i) => i !== rowIndex);
+                setData(updatedData);
+            }
+        } catch(error) {
+            console.log(error);
+        }
+    }
+
+    return (
+        <div className="accordion" id="accordionExample">
+            {data?.map((item, i) => (
+                <div className="accordion-item" key={i}>
+                    <h2 className="accordion-header" id={`heading${i}`}>
+                        <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target={`#collapse${i}`} aria-expanded="true" aria-controls={`collapse${i}`}>
+                            Periode: {item.periode} - Datum: {item.datum}
+                        </button>
+                    </h2>
+                    <div id={`collapse${i}`} className="accordion-collapse collapse" aria-labelledby={`heading${i}`} data-bs-parent="#accordionExample">
+                        <div className="accordion-body">
+                            <div className="d-flex justify-content-between align-items-center">
+                                <span>
+                                    <strong className="display-8">Dag:</strong> {item.dag}
+                                </span>
+                                <span>
+                                    <strong className="display-8">Werktijden:</strong> {item.begintijd} {" - "} {item.eindtijd}
+                                </span>
+                                <span>
+                                    <span className="display-8">Aantal km's gereden: </span> {item.totaalkm}
+                                </span>
+                                <span>
+                                    <Link to={`/edit/${i}`} style={{ textDecoration: "none" }}>Edit</Link>
+                                    <button className="btn btn-sm btn-danger ms-1" onClick={() => handleDelete(i)}>X</button>
+                                </span>
+                            </div>
+                            <p>{item.message}</p>
+                        </div>
+                    </div>
+                </div>
+            ))}
+        </div>
+    )
+}
+
+export default Home;
