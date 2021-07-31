@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Table, Button } from 'react-bootstrap';
+import { FaPencilAlt, FaTrashAlt } from 'react-icons/fa';
 
 const Home = () => {
     const [data, setData] = useState();
@@ -35,35 +37,33 @@ const Home = () => {
 
     return (
         <div className="accordion" id="accordionExample">
-            {data?.map((item, i) => (
-                <div className="accordion-item" key={i}>
-                    <h2 className="accordion-header" id={`heading${i}`}>
-                        <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target={`#collapse${i}`} aria-expanded="true" aria-controls={`collapse${i}`}>
-                            Periode: {item.periode} - Datum: {item.datum}
-                        </button>
-                    </h2>
-                    <div id={`collapse${i}`} className="accordion-collapse collapse" aria-labelledby={`heading${i}`} data-bs-parent="#accordionExample">
-                        <div className="accordion-body">
-                            <div className="d-flex justify-content-between align-items-center">
-                                <span>
-                                    <strong className="display-8">Dag:</strong> {item.dag}
-                                </span>
-                                <span>
-                                    <strong className="display-8">Werktijden:</strong> {item.begintijd} {" - "} {item.eindtijd}
-                                </span>
-                                <span>
-                                    <span className="display-8">Aantal km's gereden: </span> {item.totaalkm}
-                                </span>
-                                <span>
-                                    <Link to={`/edit/${i}`} style={{ textDecoration: "none" }}>Edit</Link>
-                                    <button className="btn btn-sm btn-danger ms-1" onClick={() => handleDelete(i)}>X</button>
-                                </span>
-                            </div>
-                            <p>{item.message}</p>
-                        </div>
-                    </div>
-                </div>
-            ))}
+            <Table striped bordered hover>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Datum</th>
+                        <th>Dag</th>
+                        <th>Begin - Eindtijd</th>
+                        <th>Aantal Km's</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {data?.map((item, i) => (
+                        <tr>
+                            <td>{item.periode}</td>
+                            <td>{item.datum}</td>
+                            <td>{item.dag}</td>
+                            <td>{item.begintijd} - {item.eindtijd}</td>
+                            <td>{item.totaalkm}</td>
+                            <td>
+                                <Link className="btn btn-md btn-primary ms-1" to={`/edit/${i}`} style={{ textDecoration: "none" }}><FaPencilAlt /></Link> | 
+                                <Button className="btn btn-md btn-danger ms-1" onClick={() => handleDelete(i)}><FaTrashAlt /></Button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </Table>
         </div>
     )
 }
