@@ -29,7 +29,7 @@ const Add = () => {
             });
             
             if (res.ok)
-                history.replace("/");
+                history.replace("/simple-hourregistration/");
             
         } catch (error) {
             console.log(error);

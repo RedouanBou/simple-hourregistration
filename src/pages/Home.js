@@ -57,7 +57,7 @@ const Home = () => {
                             <td>{item.begintijd} - {item.eindtijd}</td>
                             <td>{item.totaalkm}</td>
                             <td>
-                                <Link className="btn btn-md btn-primary ms-1" to={`/edit/${i}`} style={{ textDecoration: "none" }}><FaPencilAlt /></Link> | 
+                                <Link className="btn btn-md btn-primary ms-1" to={`/simple-hourregistration/edit/${i}`} style={{ textDecoration: "none" }}><FaPencilAlt /></Link> | 
                                 <Button className="btn btn-md btn-danger ms-1" onClick={() => handleDelete(i)}><FaTrashAlt /></Button>
                             </td>
                         </tr>

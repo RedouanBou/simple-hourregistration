@@ -43,7 +43,7 @@ const Edit = () => {
             });
 
             if (res.ok) 
-                history.replace("/");
+                history.replace("/simple-hourregistration/");
         
         } catch (error) {
             console.log(error);

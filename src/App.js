@@ -12,9 +12,9 @@ function App() {
 
       <div className="container">
         <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/add" component={Add} />
-          <Route exact path="/edit/:rowIndex" component={Edit} />
+          <Route exact path="/simple-hourregistration/" component={Home} />
+          <Route exact path="/simple-hourregistration/add" component={Add} />
+          <Route exact path="/simple-hourregistration/edit/:rowIndex" component={Edit} />
         </Switch>
       </div>
     </BrowserRouter>
