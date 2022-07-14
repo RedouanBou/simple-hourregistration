@@ -11,3 +11,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.me-auto a {
+  text-decoration: none;
+  color: #FFF;
+}
+
+.me-auto a:hover {
+  color: #CCC;
+  text-decoration: underline;
+}
+
+.home-body {
+  margin: 50px auto;
+}

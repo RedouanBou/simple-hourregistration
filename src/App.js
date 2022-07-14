@@ -1,6 +1,6 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-import Navbar from "./components/Navbar";
+import NavbarMenu from "./components/NavbarMenu";
 import Home from "./pages/Home";
 import Add from "./pages/Add";
 import Edit from "./pages/Edit";
@@ -8,13 +8,13 @@ import Edit from "./pages/Edit";
 function App() {
   return (
     <BrowserRouter>
-      <Navbar />
+      <NavbarMenu />
 
       <div className="container">
         <Switch>
-          <Route exact path="/simple-hourregistration/" component={Home} />
-          <Route exact path="/simple-hourregistration/add" component={Add} />
-          <Route exact path="/simple-hourregistration/edit/:rowIndex" component={Edit} />
+          <Route exact path="/" component={Home} />
+          <Route exact path="/add" component={Add} />
+          <Route exact path="/edit/:rowIndex" component={Edit} />
         </Switch>
       </div>
     </BrowserRouter>

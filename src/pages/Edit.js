@@ -1,9 +1,11 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+
+import { Container, Form, Button } from 'react-bootstrap';
+
 
 const Edit = () => {
-    const history = useHistory();
+
     const { rowIndex } = useParams();
     const [data, setData] = useState({
         periode: 0,
@@ -18,7 +20,6 @@ const Edit = () => {
         try {
             const res = await fetch(`https://sheet.best/api/sheets/9dd5c7ac-a6b0-4df5-9053-67f37650687d/${rowIndex}`);
             const data = await res.json();
-            console.log(data);
             setData(data[0]);
         } catch (error) {
             console.log(error);
@@ -42,45 +43,76 @@ const Edit = () => {
                 body: JSON.stringify(data),
             });
 
-            if (res.ok) 
-                history.replace("/simple-hourregistration/");
-        
+            if (res.ok) {
+                alert("Updated successfully");
+            } 
+
         } catch (error) {
             console.log(error);
         }
     };
 
     return (
-        <form style={{ maxWidth: 500, margin: "auto" }} onSubmit={handleSubmit}>
-            <h1 className="text-muted text-center">Edit</h1>
-            <hr />
-            <div className="mb-3">
-                <label htmlFor="periode" className="form-label">Periode</label>
-                <input type="text" className="form-control" name="periode" value={data.periode} onChange={handleChange} required="required" />
-            </div>
-            <div className="mb-3">
-                <label htmlFor="datum" className="form-label">Datum</label>
-                <input type="text" className="form-control" name="datum" value={data.datum} onChange={handleChange} required="required" />
-            </div>
-            <div className="mb-3">
-                <label htmlFor="dag" className="form-label">Dag</label>
-                <input type="text" className="form-control" name="dag" value={data.dag} onChange={handleChange} required="required" />
-            </div>
-            <div className="mb-3">
-                <label htmlFor="begintijd" className="form-label">Begin tijd</label>
-                <input type="text" className="form-control" name="begintijd" value={data.begintijd} onChange={handleChange} required="required" />
-            </div>
-            <div className="mb-3">
-                <label htmlFor="eindtijd" className="form-label">Eind tijd</label>
-                <input type="text" className="form-control" name="eindtijd" value={data.eindtijd} onChange={handleChange} required="required" />
-            </div>
-            <div className="mb-3">
-                <label htmlFor="km" className="form-label">Aantal km's</label>
-                <input type="text" className="form-control" name="totaalkm" value={data.totaalkm} onChange={handleChange} required="required" />
-            </div>
-            <button type="submit" className="btn btn-primary btn-lg btn-block">Edit</button>
-        </form>
-    )
+        <Container>
+            <Form style={{ maxWidth: 500, margin: "35px auto" }} onSubmit={handleSubmit}>
+                <h1>Edit existing rule</h1>
+
+                <hr />
+
+                <Form.Group className="mb-3" controlId="formBasicPeriod">
+                    <Form.Label>Periode</Form.Label>
+                    <Form.Control type="number" name="periode" placeholder="Enter period" value={data.periode} onChange={handleChange} />
+                    <Form.Text className="text-muted">
+                        The period you are now in.
+                    </Form.Text>
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="formBasicDate">
+                    <Form.Label>Datum</Form.Label>
+                    <Form.Control type="text" name="datum" placeholder="Enter Date" value={data.datum} onChange={handleChange} />
+                    <Form.Text className="text-muted">
+                        This is the date of the current day.
+                    </Form.Text>
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="formBasicDay">
+                    <Form.Label>Dag</Form.Label>
+                    <Form.Control type="text" name="dag" placeholder="Enter Day" value={data.dag} onChange={handleChange} />
+                    <Form.Text className="text-muted">
+                        This is the current day.
+                    </Form.Text>
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="formBasicStartTime">
+                    <Form.Label>Gestart om</Form.Label>
+                    <Form.Control type="text" name="begintijd" placeholder="Enter start time" value={data.begintijd} onChange={handleChange} />
+                    <Form.Text className="text-muted">
+                        This is the start time.
+                    </Form.Text>
+                </Form.Group>
+                
+                <Form.Group className="mb-3" controlId="formBasicEndTime">
+                    <Form.Label>Gestopt om</Form.Label>
+                    <Form.Control type="text" name="eindtijd" placeholder="Enter start time" value={data.eindtijd} onChange={handleChange} />
+                    <Form.Text className="text-muted">
+                        This is the end time.
+                    </Form.Text>
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="formBasicEndTime">
+                    <Form.Label>Aantal km's gereden</Form.Label>
+                    <Form.Control type="number" name="totaalkm" value={data.totaalkm} onChange={handleChange} />
+                    <Form.Text className="text-muted">
+                        This is the amount of the km's.
+                    </Form.Text>
+                </Form.Group>
+
+                <Button variant="primary" type="submit">
+                    Update
+                </Button>
+            </Form>
+        </Container>
+    );
 }
 
 export default Edit;
