@@ -18,6 +18,9 @@ const NavbarMenu = () => {
                         <Nav.Link>
                             <Link to="/add">Add</Link>
                         </Nav.Link>
+                        <Nav.Link>
+                            <Link to="/export-data">Export Data</Link>
+                        </Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

@@ -39,7 +39,7 @@ const Home = () => {
 
     return (
         <Container>
-            <div className="home-body">
+            <div className="body">
                 <Table responsive>
                     <thead>
                         <tr>
