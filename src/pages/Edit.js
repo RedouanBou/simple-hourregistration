@@ -55,7 +55,7 @@ const Edit = () => {
     return (
         <Container>
             <Form style={{ maxWidth: 500, margin: "35px auto" }} onSubmit={handleSubmit}>
-                <h1>Edit existing rule</h1>
+                <h1 style={{ alignContent: "center" }}>Edit existing rule</h1>
 
                 <hr />
 

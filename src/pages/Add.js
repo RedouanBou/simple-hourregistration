@@ -40,7 +40,7 @@ const Add = () => {
     return (
         <Container>
             <Form style={{ maxWidth: 500, margin: "35px auto" }} onSubmit={handleSubmit}>
-                <h1>Add new rule</h1>
+                <h1 style={{ alignContent: "center" }}>Add new rule</h1>
 
                 <hr />
 
