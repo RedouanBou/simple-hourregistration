@@ -39,7 +39,7 @@ const Export = () => {
                     </Form.Text>
                 </Form.Group>
 
-                <Button>
+                <Button variant="primary" type="submit">
                     Export data
                 </Button>
             </Form>
