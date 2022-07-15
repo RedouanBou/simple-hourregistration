@@ -13,10 +13,10 @@ function App() {
 
       <div className="container">
         <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/add" component={Add} />
-          <Route exact path="/edit/:rowIndex" component={Edit} />
-          <Route exact path="/export-data" component={Export} />
+          <Route exact path="/" className="menuItem" component={Home} />
+          <Route path="/add" component={Add} />
+          <Route path="/edit/:rowIndex" component={Edit} />
+          <Route path="/export-data" component={Export} />
         </Switch>
       </div>
     </BrowserRouter>

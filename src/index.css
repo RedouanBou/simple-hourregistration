@@ -12,16 +12,6 @@ code {
     monospace;
 }
 
-.me-auto a {
-  text-decoration: none;
-  color: #FFF;
-}
-
-.me-auto a:hover {
-  color: #CCC;
-  text-decoration: underline;
-}
-
 .body {
   margin: 50px auto;
 }
